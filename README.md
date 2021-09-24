@@ -1,4 +1,4 @@
-# panakota
+## panakota
 
 The app, that helps people of Kyrgyzstan vote wisely. 
 
