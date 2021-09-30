@@ -3,12 +3,12 @@ package com.konzerra.panakota.presentation.commoncomponents
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.konzerra.panakota.domain.model.DetailedBill
 import com.konzerra.panakota.ui.theme.Black500
 import com.konzerra.panakota.ui.theme.Blue500
@@ -21,26 +21,28 @@ fun BillItem(
 ){
     Row(modifier = Modifier
         .padding(start = 16.dp, end = 16.dp, bottom = 10.dp)
-        .background(Blue700)
+        .fillMaxWidth()
+        .background( Blue700)
         .clickable { onItemClick(bill) }
     ) {
         Box(modifier = Modifier
-            .width(5.dp)
+            .width(6.dp)
+            .height(IntrinsicSize.Max)
         )
         Box(modifier = Modifier
             .background(Blue500)
+            .fillMaxWidth()
         ){
             Column() {
                 Text(text = bill.name,
-                    fontSize = 14.sp,
                     modifier = Modifier
-                        .padding(10.dp)
+                        .padding(start = 13.dp, top = 10.dp, end = 10.dp,)
                 )
                 Text(text = bill.date,
                     color = Black500,
-                    fontSize = 10.sp,
+                    style = MaterialTheme.typography.body2,
                     modifier = Modifier
-                        .padding(start = 10.dp, bottom = 10.dp)
+                        .padding(start = 13.dp, bottom = 10.dp, top = 5.dp)
                         .align(alignment = Alignment.Start)
                 )
             }

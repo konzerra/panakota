@@ -1,4 +1,4 @@
-package com.konzerra.panakota.presentation.bills
+package com.konzerra.panakota.presentation.billList
 
 import com.konzerra.panakota.domain.model.DetailedBill
 

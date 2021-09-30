@@ -1,4 +1,4 @@
-package com.konzerra.panakota.presentation.bills
+package com.konzerra.panakota.presentation.billList
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -13,8 +13,9 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.konzerra.panakota.R
+import com.konzerra.panakota.domain.model.Convocation
 import com.konzerra.panakota.presentation.commoncomponents.BillItem
-import com.konzerra.panakota.presentation.commoncomponents.Convocation
+import com.konzerra.panakota.presentation.commoncomponents.ConvocationItem
 import com.konzerra.panakota.presentation.commoncomponents.TopBarSearch
 import com.konzerra.panakota.presentation.navigation.Screen
 
@@ -29,11 +30,15 @@ fun BillListScreen(
         TopBarSearch( contentDescription = "icon", searchTitle = "Search")
         TextFilter()
 
-        LazyRow(modifier = Modifier.padding(top = 16.dp)){
+        LazyRow(modifier = Modifier.padding(start = 16.dp, top = 16.dp, end = 16.dp)){
             itemsIndexed(
-                listOf( mapOf("name" to "VI созыв", "date" to "2015-2021"), mapOf("name" to "V созыв", "date" to "2010-2015"), mapOf("name" to "V созыв", "date" to "2010-2015"), mapOf("name" to "V созыв", "date" to "2010-2015"), mapOf("name" to "V созыв", "date" to "2010-2015"))
+                listOf(
+                    Convocation("VI созыв", "", ""),
+                    Convocation("V созыв", "", ""),
+                    Convocation("IV созыв", "", ""),
+                )
             ){ index, item ->
-                Convocation(name = item["name"]!!, date = item["date"]!!)
+                ConvocationItem(item)
             }
         }
 

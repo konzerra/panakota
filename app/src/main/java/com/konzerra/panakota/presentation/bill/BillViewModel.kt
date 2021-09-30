@@ -3,14 +3,11 @@ package com.konzerra.panakota.presentation.bill
 import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.konzerra.panakota.common.Constants
 import com.konzerra.panakota.common.Resource
 import com.konzerra.panakota.domain.model.DetailedBill
 import com.konzerra.panakota.domain.usecase.GetBillUseCase
-import com.konzerra.panakota.domain.usecase.GetBillsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -24,7 +21,12 @@ class BillViewModel @Inject constructor(
     private var billId:String ="Nothing"
     private val _state = mutableStateOf(BillState())
     val state : State<BillState> = _state
+    private val _currentTab = mutableStateOf(0)
+    val currentTab : State<Int> = _currentTab
 
+    fun setCurrentTab(index:Int){
+        _currentTab.value = index
+    }
     fun setBillId(billId:String){
         val bill = DetailedBill(
             "О защите от ложной и недостоверной информации",

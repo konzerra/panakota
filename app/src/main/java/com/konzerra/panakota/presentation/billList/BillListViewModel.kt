@@ -1,4 +1,4 @@
-package com.konzerra.panakota.presentation.bills
+package com.konzerra.panakota.presentation.billList
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
@@ -21,7 +21,7 @@ class BillListViewModel @Inject constructor(
 
     init{
         val bill1= DetailedBill(
-            "Bill of Common House",
+            "О проекте Закона «О признании утратившим силу Закона Кыргызской Республики «О закрытом акционерном обществе «Пятый канал»",
             "12/12/2012",
             listOf("Boris Johnson"),
             25,

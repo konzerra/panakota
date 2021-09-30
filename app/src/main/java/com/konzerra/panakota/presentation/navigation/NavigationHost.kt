@@ -7,7 +7,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.navArgument
 import androidx.navigation.compose.rememberNavController
 import com.konzerra.panakota.presentation.bill.BillScreen
-import com.konzerra.panakota.presentation.bills.BillListScreen
+import com.konzerra.panakota.presentation.billList.BillListScreen
 
 @Composable
 fun Navigation(){
