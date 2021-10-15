@@ -7,7 +7,19 @@
     <string name="voted">Voted</string>
     <string name="link_to_doc">Link</string>
     <string name="look">Look</string>
-
+    <string name="home">Home</string>
+    <string name="bill">Bill</string>
+    <string name="bills">Bills</string>
+    <string name="settings">Settings</string>
+    <string name="help">Help</string>
+    <string name="about_us">About us</string>
+    <string name="party">Party</string>
+    <string name="parties">Parties</string>
+    <string name="my_lists">My lists</string>
+    <string name="deputy">Deputy</string>
+    <string name="deputies">Deputies</string>
+    <string name="election">Election</string>
+    <string name="elections">Elections</string>
     //test resources
     <string name="bill1">О проекте Закона «О признании утратившим силу Закона Кыргызской Республики «О закрытом акционерном обществе «Пятый канал»</string>
     <string name="bill2">О защите от ложной и недостоверной информации</string>
