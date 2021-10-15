@@ -73,7 +73,9 @@ sealed class Screen(
         R.string.about_us,
         R.drawable.ic_about
     )
-
+    fun startScreen():Screen{
+        return HomeScreen
+    }
     fun withArgs(vararg args:String):String{
         return buildString {
             append(route)

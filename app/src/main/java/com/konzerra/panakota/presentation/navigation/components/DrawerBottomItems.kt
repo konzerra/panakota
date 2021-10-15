@@ -7,12 +7,17 @@ import androidx.compose.material.Card
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.konzerra.panakota.presentation.navigation.Screen
 import com.konzerra.panakota.ui.theme.Blue500
 import com.konzerra.panakota.ui.theme.Blue700
 
 
 @Composable
-fun BottomItems(modifier: Modifier){
+fun BottomItems(
+    modifier: Modifier,
+    currentScreen: Screen,
+    onItemClicked: (Screen) -> Unit,
+){
 
 
     Card(modifier = modifier,
@@ -27,7 +32,27 @@ fun BottomItems(modifier: Modifier){
                 .height(4.dp)
                 .background(Blue700)
             )
-            //DrawerItem(Screen.BillListScreen)
+            DrawerItem(
+                thisScreen = Screen.SettingsScreen,
+                currentScreen = currentScreen,
+                onClick = { screen->
+                    onItemClicked(screen)
+                }
+            )
+            DrawerItem(
+                thisScreen = Screen.AboutUsScreen,
+                currentScreen = currentScreen,
+                onClick = { screen->
+                    onItemClicked(screen)
+                }
+            )
+            DrawerItem(
+                thisScreen = Screen.HelpScreen,
+                currentScreen = currentScreen,
+                onClick = { screen->
+                    onItemClicked(screen)
+                }
+            )
             Spacer(modifier = Modifier
                 .height(50.dp)
 

@@ -10,9 +10,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.compose.rememberNavController
 
 import com.konzerra.panakota.presentation.commoncomponents.TopBarSearch
-import com.konzerra.panakota.presentation.navigation.NavDrawer
+import com.konzerra.panakota.presentation.navigation.Drawer
+
 import com.konzerra.panakota.presentation.navigation.Navigation
 import com.konzerra.panakota.ui.theme.Blue700
 import com.konzerra.panakota.ui.theme.PanakotaTheme
@@ -23,9 +26,24 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            val navController = rememberNavController()
+            val sharedViewModel:SharedViewModel = hiltViewModel()
+            val scaffoldState = rememberScaffoldState()
             PanakotaTheme {
                 Surface(color = MaterialTheme.colors.background) {
-                   Navigation()
+                    Scaffold(
+                        scaffoldState = scaffoldState,
+                        drawerContent = {
+                            Drawer(
+                                currentScreen = sharedViewModel.currentScreen.value
+                            ){ screen ->
+                                sharedViewModel.setCurrentScreen(screen)
+                                navController.navigate(screen.route)
+                            }
+                        }
+                    ) {
+                        Navigation(navController)
+                    }
                 }
             }
         }
@@ -35,34 +53,6 @@ class MainActivity : ComponentActivity() {
 
 
 
-@Composable
-fun Triangle(modifier: Modifier){
-    Canvas(modifier = Modifier.fillMaxSize()) {
-        val canvasQuadrantSize = size / 2F
-        drawRect(
-            color = Blue700,
-            size = canvasQuadrantSize
-        )
-    }
-}
 
 
 
-
-
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    val state = rememberScaffoldState()
-    val coroutineScope = rememberCoroutineScope()
-    PanakotaTheme {
-        Scaffold(
-            drawerContent = { NavDrawer() },
-            content = {
-                TopBarSearch(contentDescription = "", searchTitle = "Search")
-            }
-        )
-
-    }
-}

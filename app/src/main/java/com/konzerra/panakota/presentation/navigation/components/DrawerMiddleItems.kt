@@ -8,11 +8,56 @@ import com.konzerra.panakota.presentation.navigation.Screen
 import com.konzerra.panakota.presentation.navigation.components.DrawerItem
 
 @Composable
-fun MiddleItems(modifier: Modifier){
+fun MiddleItems(
+    modifier: Modifier,
+    currentScreen: Screen,
+    onItemClicked: (Screen) -> Unit,
+){
     LazyColumn(modifier = modifier
         .fillMaxSize()){
         item {
-            //DrawerItem(Screen.BillListScreen)
+            DrawerItem(
+                thisScreen = Screen.HomeScreen,
+                currentScreen = currentScreen,
+                onClick = { screen->
+                    onItemClicked(screen)
+                }
+            )
+            DrawerItem(
+                thisScreen = Screen.BillListScreen,
+                currentScreen = currentScreen,
+                onClick = { screen->
+                    onItemClicked(screen)
+                }
+            )
+            DrawerItem(
+                thisScreen = Screen.PartyListScreen,
+                currentScreen = currentScreen,
+                onClick = { screen->
+                    onItemClicked(screen)
+                }
+            )
+            DrawerItem(
+                thisScreen = Screen.ListScreen,
+                currentScreen = currentScreen,
+                onClick = { screen->
+                    onItemClicked(screen)
+                }
+            )
+            DrawerItem(
+                thisScreen = Screen.DeputyListScreen,
+                currentScreen = currentScreen,
+                onClick = { screen->
+                    onItemClicked(screen)
+                }
+            )
+            DrawerItem(
+                thisScreen = Screen.ElectionListScreen,
+                currentScreen = currentScreen,
+                onClick = { screen->
+                    onItemClicked(screen)
+                }
+            )
         }
     }
 }
