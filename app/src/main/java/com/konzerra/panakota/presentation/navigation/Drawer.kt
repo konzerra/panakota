@@ -13,8 +13,8 @@ import com.konzerra.panakota.ui.theme.Blue500
 
 @Composable
 fun Drawer(
-    currentScreen: Screen,
-    onItemClicked: (Screen) -> Unit,
+    currentScreen: String,
+    onItemClicked: (String) -> Unit,
 ){
     val constraints = ConstraintSet {
         val topBox = createRefFor("topBox")

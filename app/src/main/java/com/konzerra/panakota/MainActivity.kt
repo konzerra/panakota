@@ -3,44 +3,42 @@ package com.konzerra.panakota
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.*
+import androidx.activity.viewModels
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Surface
+import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
-
-import com.konzerra.panakota.presentation.commoncomponents.TopBarSearch
 import com.konzerra.panakota.presentation.navigation.Drawer
-
 import com.konzerra.panakota.presentation.navigation.Navigation
-import com.konzerra.panakota.ui.theme.Blue700
 import com.konzerra.panakota.ui.theme.PanakotaTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    private val sharedViewModel: SharedViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            val navController = rememberNavController()
-            val sharedViewModel:SharedViewModel = hiltViewModel()
             val scaffoldState = rememberScaffoldState()
+            val navController = rememberNavController()
+            val coroutineScope = rememberCoroutineScope()
             PanakotaTheme {
                 Surface(color = MaterialTheme.colors.background) {
                     Scaffold(
                         scaffoldState = scaffoldState,
                         drawerContent = {
                             Drawer(
-                                currentScreen = sharedViewModel.currentScreen.value
-                            ){ screen ->
-                                sharedViewModel.setCurrentScreen(screen)
-                                navController.navigate(screen.route)
+                                currentScreen = sharedViewModel.currentScreen.value,
+                            ){ screenRoute ->
+                                navController.navigate(screenRoute)
                             }
-                        }
+                        },
                     ) {
                         Navigation(navController)
                     }
@@ -48,6 +46,15 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+    }
+}
+@Preview(showBackground = true)
+@Composable
+fun DefaultPreview() {
+
 }
 
 

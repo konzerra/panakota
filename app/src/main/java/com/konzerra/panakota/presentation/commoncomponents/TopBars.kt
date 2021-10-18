@@ -20,78 +20,9 @@ import com.konzerra.panakota.ui.theme.Blue1000
 import com.konzerra.panakota.ui.theme.Blue500
 import com.konzerra.panakota.ui.theme.PanakotaTheme
 
-@Composable
-fun TopBarSearch(
-    contentDescription: String,
-    searchTitle:String,
-    modifier: Modifier = Modifier
-) {
-    var textFieldState by remember {
-        mutableStateOf("")
-    }
-    Box(
-        modifier = modifier
-            .fillMaxWidth()
-            .height(56.dp)
-            .background(Blue500),
-    ){
-        Row() {
-            Image(
-                painterResource(R.drawable.ic_menu),
-                contentDescription,
-                modifier = Modifier
-                    .height(40.dp)
-                    .width(40.dp)
-                    .padding(start = 10.dp, top = 10.dp),
-                contentScale = ContentScale.Fit
-            )
-            TextField(value = textFieldState,
-                label = { Text(searchTitle, color = Blue1000) },
-                colors = TextFieldDefaults.textFieldColors(
-                    textColor = Blue1000,
-                    backgroundColor = Color.Transparent,
-                    focusedIndicatorColor = Color.Transparent,
-                    unfocusedIndicatorColor = Color.Transparent,
-                    disabledIndicatorColor = Color.Transparent,
-                ),
-                onValueChange = {
-                    textFieldState=it
-                },
-            )
-        }
-    }
-}
 
-@Composable
-fun TopBarText(
-    contentDescription: String,
-    title:String,
-    modifier: Modifier = Modifier
-) {
-    Box(
-        modifier = modifier
-            .fillMaxWidth()
-            .height(56.dp)
-            .background(Blue500),
-    ){
-        Row(modifier = Modifier.fillMaxHeight()) {
-            Image(
-                painterResource(R.drawable.ic_menu),
-                contentDescription,
-                modifier = Modifier
-                    .height(40.dp)
-                    .width(40.dp)
-                    .padding(start = 10.dp, top = 10.dp, end = 10.dp),
-                contentScale = ContentScale.Fit
-            )
-            Text(text = title,
-                fontSize = 20.sp,
-                modifier = Modifier
-                    .align(alignment = Alignment.CenterVertically)
-            )
-        }
-    }
-}
+
+
 
 @Preview(showBackground = true)
 @Composable

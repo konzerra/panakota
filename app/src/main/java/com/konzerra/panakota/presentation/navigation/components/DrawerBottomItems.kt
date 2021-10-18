@@ -15,8 +15,8 @@ import com.konzerra.panakota.ui.theme.Blue700
 @Composable
 fun BottomItems(
     modifier: Modifier,
-    currentScreen: Screen,
-    onItemClicked: (Screen) -> Unit,
+    currentScreen: String,
+    onItemClicked: (String) -> Unit,
 ){
 
 
@@ -35,22 +35,22 @@ fun BottomItems(
             DrawerItem(
                 thisScreen = Screen.SettingsScreen,
                 currentScreen = currentScreen,
-                onClick = { screen->
-                    onItemClicked(screen)
+                onClick = { screenRoute->
+                    onItemClicked(screenRoute)
                 }
             )
             DrawerItem(
                 thisScreen = Screen.AboutUsScreen,
                 currentScreen = currentScreen,
-                onClick = { screen->
-                    onItemClicked(screen)
+                onClick = { screenRoute->
+                    onItemClicked(screenRoute)
                 }
             )
             DrawerItem(
                 thisScreen = Screen.HelpScreen,
                 currentScreen = currentScreen,
-                onClick = { screen->
-                    onItemClicked(screen)
+                onClick = { screenRoute->
+                    onItemClicked(screenRoute)
                 }
             )
             Spacer(modifier = Modifier

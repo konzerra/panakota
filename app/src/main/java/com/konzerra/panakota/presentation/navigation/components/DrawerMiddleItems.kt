@@ -10,8 +10,8 @@ import com.konzerra.panakota.presentation.navigation.components.DrawerItem
 @Composable
 fun MiddleItems(
     modifier: Modifier,
-    currentScreen: Screen,
-    onItemClicked: (Screen) -> Unit,
+    currentScreen: String,
+    onItemClicked: (String) -> Unit,
 ){
     LazyColumn(modifier = modifier
         .fillMaxSize()){

@@ -25,8 +25,8 @@ import com.konzerra.panakota.ui.theme.Typography
 @Composable
 fun DrawerItem(
     thisScreen: Screen,
-    currentScreen: Screen,
-    onClick: (Screen) -> Unit
+    currentScreen: String,
+    onClick: (String) -> Unit
 ){
     val constraints = ConstraintSet {
         val textView = createRefFor("textView")
@@ -51,10 +51,10 @@ fun DrawerItem(
         .height(46.dp)
         .padding(start = 6.dp, end = 6.dp, top = 4.dp, bottom = 4.dp)
         .clickable {
-            onClick(thisScreen)
+            onClick(thisScreen.route)
         },
         //comparing drawable resources makes drawer display correct tab
-        elevation = if(thisScreen.drawableResource == currentScreen.drawableResource) 4.dp else 0.dp,
+        elevation = if(thisScreen.route == currentScreen) 4.dp else 0.dp,
         shape = RoundedCornerShape(4.dp)
     ) {
         ConstraintLayout(
@@ -62,7 +62,7 @@ fun DrawerItem(
             modifier = Modifier
                 .fillMaxWidth()
                 .fillMaxHeight()
-                .background( if(thisScreen.drawableResource == currentScreen.drawableResource) Blue700 else Blue500)
+                .background( if(thisScreen.route == currentScreen) Blue700 else Blue500)
         ) {
             Text(
                 text = stringResource(id = thisScreen.stringResource),

@@ -36,7 +36,7 @@ fun ConvocationItem(convocation: Convocation){
             text = convocation.name,
             style = MaterialTheme.typography.body1,
             textAlign = TextAlign.Center,
-            modifier = Modifier.padding(start = 5.dp, end = 5.dp)
+            modifier = Modifier.padding(start = 5.dp, end = 5.dp, bottom = 3.dp)
         )
     }
 }

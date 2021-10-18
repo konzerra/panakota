@@ -17,6 +17,7 @@ import com.konzerra.panakota.domain.model.Convocation
 import com.konzerra.panakota.presentation.commoncomponents.BillItem
 import com.konzerra.panakota.presentation.commoncomponents.ConvocationItem
 import com.konzerra.panakota.presentation.commoncomponents.TopBarSearch
+
 import com.konzerra.panakota.presentation.navigation.Screen
 
 
@@ -27,7 +28,15 @@ fun BillListScreen(
 ){
     val state = viewModel.state.value
     Column {
-        TopBarSearch( contentDescription = "icon", searchTitle = "Search")
+        TopBarSearch(
+            searchTitle = "Search",
+            onMenuClicked = {
+
+            },
+            onSearchRequest = {
+
+            }
+        )
         TextFilter()
 
         LazyRow(modifier = Modifier.padding(start = 16.dp, top = 16.dp, end = 16.dp)){
@@ -50,15 +59,6 @@ fun BillListScreen(
             }
         }
     }
-}
-
-@Composable
-fun HorizontalScroll(){
-
-}
-@Composable
-fun VerticalScroll(){
-
 }
 @Composable
 fun TextFilter(){
