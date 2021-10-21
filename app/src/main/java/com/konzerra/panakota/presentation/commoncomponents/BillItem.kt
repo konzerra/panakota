@@ -19,7 +19,7 @@ import com.konzerra.panakota.ui.theme.Blue700
 @Composable
 fun BillItem(
     bill:DetailedBill,
-    onItemClick: (DetailedBill) -> Unit
+    onItemClick: (String) -> Unit
 ){
     Card(modifier = Modifier,
         elevation =  4.dp,
@@ -28,7 +28,7 @@ fun BillItem(
             .padding(start = 16.dp, end = 16.dp, bottom = 10.dp)
             .fillMaxWidth()
             .background( Blue700)
-            .clickable { onItemClick(bill) }
+            .clickable { onItemClick(bill.id) }
         ) {
             Box(modifier = Modifier
                 .width(6.dp)

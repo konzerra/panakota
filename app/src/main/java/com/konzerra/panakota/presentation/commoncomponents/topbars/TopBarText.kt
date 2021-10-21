@@ -14,14 +14,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.konzerra.panakota.R
+import com.konzerra.panakota.ui.theme.Blue1000
 import com.konzerra.panakota.ui.theme.Blue500
 import com.konzerra.panakota.ui.theme.Blue700
 
 @Composable
 fun TopBarText(
-    contentDescription: String,
     title:String,
-    modifier: Modifier = Modifier
+    modifier: Modifier
 ) {
     Box(
         modifier = modifier
@@ -39,7 +39,7 @@ fun TopBarText(
                     .height(25.dp)
                     .width(25.dp),
                 contentScale = ContentScale.Fit,
-                colorFilter = ColorFilter.lighting(Blue700, Blue700)
+                colorFilter = ColorFilter.lighting(Blue1000, Blue1000)
             )
             Text(text = title,
                 fontSize = 20.sp,

@@ -1,22 +1,24 @@
 package com.konzerra.panakota.presentation.billList
 
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.constraintlayout.compose.ConstraintSet
+import androidx.constraintlayout.compose.Dimension
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.konzerra.panakota.R
-import com.konzerra.panakota.domain.model.Convocation
-import com.konzerra.panakota.presentation.commoncomponents.BillItem
-import com.konzerra.panakota.presentation.commoncomponents.ConvocationItem
+import com.konzerra.panakota.presentation.billList.components.ItemsView
 import com.konzerra.panakota.presentation.commoncomponents.TopBarSearch
+import com.konzerra.panakota.presentation.commoncomponents.Triangle
+import com.konzerra.panakota.presentation.commoncomponents.convocationsview.ConvocationsView
 
 import com.konzerra.panakota.presentation.navigation.Screen
 
@@ -27,8 +29,18 @@ fun BillListScreen(
     viewModel: BillListViewModel = hiltViewModel()
 ){
     val state = viewModel.state.value
-    Column {
+    val constraints = setConstraints() //see at the end
+    ConstraintLayout(constraints) {
+        ItemsView(
+            modifier = Modifier.layoutId("itemsView"),
+            bills = state.bills,
+            onItemClicked = { billId->
+                navController.navigate(Screen.BillScreen.withArgs(billId))
+            })
+        ConvocationsView(modifier = Modifier.layoutId("convocationsView"))
+        TextFilter(modifier = Modifier.layoutId("tvSort"))
         TopBarSearch(
+            modifier = Modifier.layoutId("topBar"),
             searchTitle = "Search",
             onMenuClicked = {
 
@@ -37,33 +49,57 @@ fun BillListScreen(
 
             }
         )
-        TextFilter()
+        Triangle(modifier = Modifier.layoutId("topTriangle"))
 
-        LazyRow(modifier = Modifier.padding(start = 16.dp, top = 16.dp, end = 16.dp)){
-            itemsIndexed(
-                listOf(
-                    Convocation("VI созыв", "", ""),
-                    Convocation("V созыв", "", ""),
-                    Convocation("IV созыв", "", ""),
-                )
-            ){ index, item ->
-                ConvocationItem(item)
-            }
-        }
-
-        LazyColumn(modifier = Modifier.padding(top = 16.dp)){
-            itemsIndexed( state.bills ){ index, bill ->
-                BillItem(bill = bill, onItemClick = {
-                    navController.navigate(Screen.BillScreen.withArgs(bill.id))
-                })
-            }
-        }
     }
+
 }
 @Composable
-fun TextFilter(){
+fun TextFilter(modifier: Modifier){
     Text(
         text = stringResource(id = R.string.filter_by_convocations),
-        modifier = Modifier.padding(top = 16.dp, start = 16.dp)
+        modifier = modifier.padding(top = 16.dp, start = 16.dp)
     )
+}
+
+//constraints
+private fun setConstraints():ConstraintSet{
+    val constraints = ConstraintSet {
+        val topBar = createRefFor("topBar")
+        val topTriangle = createRefFor("topTriangle")
+        val tvSort = createRefFor("tvSort")
+        val convocationsView = createRefFor("convocationsView")
+        val itemsView = createRefFor("itemsView")
+        constrain(topBar) {
+            top.linkTo(parent.top)
+            start.linkTo(parent.start)
+            width = Dimension.wrapContent
+            height = Dimension.wrapContent
+        }
+        constrain(topTriangle) {
+            top.linkTo(parent.top)
+            end.linkTo(parent.end)
+            width = Dimension.wrapContent
+            height = Dimension.wrapContent
+        }
+        constrain(tvSort) {
+            top.linkTo(topBar.bottom)
+            start.linkTo(parent.start)
+            width = Dimension.wrapContent
+            height = Dimension.wrapContent
+        }
+        constrain(convocationsView) {
+            top.linkTo(tvSort.bottom)
+            start.linkTo(parent.start)
+            width = Dimension.wrapContent
+            height = Dimension.wrapContent
+        }
+        constrain(itemsView) {
+            top.linkTo(convocationsView.bottom)
+            start.linkTo(parent.start)
+            width = Dimension.wrapContent
+            height = Dimension.wrapContent
+        }
+    }
+    return constraints
 }

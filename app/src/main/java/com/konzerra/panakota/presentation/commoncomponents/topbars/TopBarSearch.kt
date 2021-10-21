@@ -29,7 +29,7 @@ fun TopBarSearch(
     searchTitle:String,
     onMenuClicked:(Unit) -> Unit,
     onSearchRequest:(String) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier
 ) {
     var textFieldState by remember {
         mutableStateOf("")
@@ -62,7 +62,7 @@ fun TopBarSearch(
         }
     }
 
-    Card(modifier = Modifier
+    Card(modifier = modifier
         .height(56.dp),
         elevation =  4.dp,
         shape = RoundedCornerShape(0.dp),
@@ -112,7 +112,7 @@ fun TopBarSearch(
                     .height(25.dp)
                     .width(25.dp),
                 contentScale = ContentScale.Fit,
-                colorFilter = ColorFilter.lighting(Blue700, Blue700)
+                colorFilter = ColorFilter.lighting(Blue1000, Blue1000)
             )
         }
     }

@@ -25,7 +25,9 @@ import com.konzerra.panakota.ui.theme.Blue700
 
 
 @Composable
-fun BillTabs(updateState : (Int) -> Unit){
+fun BillTabs(
+    modifier: Modifier,
+    updateState : (Int) -> Unit){
     val constraints = ConstraintSet{
         val btInitiators = createRefFor("btInitiators")
         val btFor = createRefFor("btFor")
@@ -64,9 +66,9 @@ fun BillTabs(updateState : (Int) -> Unit){
     val currentTab = remember { mutableStateOf(0)}
     updateState(currentTab.value)
     ConstraintLayout(constraints,
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
-            .padding(start = 16.dp, end = 16.dp, top = 16.dp)
+            .padding( top = 16.dp)
             .clip(shape = RoundedCornerShape(4.dp))
             .background(Blue500)
     ) {
