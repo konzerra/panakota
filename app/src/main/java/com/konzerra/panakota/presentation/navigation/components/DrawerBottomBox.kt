@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.res.painterResource
@@ -14,6 +15,8 @@ import androidx.constraintlayout.compose.ConstraintSet
 import androidx.constraintlayout.compose.Dimension
 import com.konzerra.panakota.ui.theme.Blue500
 import com.konzerra.panakota.R
+import com.konzerra.panakota.ui.theme.BlackBasic
+import com.konzerra.panakota.ui.theme.WhiteSurface
 
 
 @Composable
@@ -33,7 +36,7 @@ fun BottomBox(modifier: Modifier){
         modifier = modifier
             .fillMaxWidth()
             .height(56.dp)
-            .background(Blue500)
+            .background(BlackBasic)
     ) {
         Image(
             painterResource(R.drawable.ic_arrow),
@@ -43,7 +46,8 @@ fun BottomBox(modifier: Modifier){
                 .height(40.dp)
                 .width(40.dp)
                 .padding(end = 16.dp),
-            contentScale = ContentScale.Fit
+            contentScale = ContentScale.Fit,
+            colorFilter = ColorFilter.lighting(WhiteSurface, WhiteSurface)
         )
     }
 }

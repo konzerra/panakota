@@ -13,6 +13,7 @@ import androidx.compose.ui.graphics.drawscope.clipPath
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import com.konzerra.panakota.ui.theme.Blue700
+import com.konzerra.panakota.ui.theme.Wood
 
 @Composable
 fun Triangle(modifier: Modifier){
@@ -29,7 +30,7 @@ fun Triangle(modifier: Modifier){
         }
         clipPath(triangle){
             drawRect(
-                color = Blue700,
+                color = Wood,
                 size = rectSize,
             )
         }

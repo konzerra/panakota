@@ -8,6 +8,7 @@ import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.res.painterResource
@@ -18,6 +19,8 @@ import androidx.constraintlayout.compose.ConstraintSet
 import androidx.constraintlayout.compose.Dimension
 import com.konzerra.panakota.ui.theme.Blue700
 import com.konzerra.panakota.R
+import com.konzerra.panakota.ui.theme.BlackBasic
+import com.konzerra.panakota.ui.theme.WhiteSurface
 
 @Composable
 fun TopBox(modifier: Modifier){
@@ -42,21 +45,22 @@ fun TopBox(modifier: Modifier){
         }
     }
     Card(modifier = modifier
-        .padding(bottom = 0.dp)
+        .padding(bottom = 4.dp)
         .fillMaxWidth()
         .height(56.dp),
-        elevation = 4.dp,
+        elevation = 8.dp,
         shape = RoundedCornerShape(0.dp)
     ) {
         ConstraintLayout(
             constraints,
             modifier = Modifier
                 .fillMaxSize()
-                .background(Blue700)
+                .background(BlackBasic)
         ) {
             Text(
                 text = "Panakota",
                 fontSize = 20.sp,
+                color = WhiteSurface,
                 modifier = Modifier.layoutId("textView")
             )
             Image(
@@ -67,7 +71,8 @@ fun TopBox(modifier: Modifier){
                     .height(40.dp)
                     .width(40.dp)
                     .padding(end = 10.dp),
-                contentScale = ContentScale.Fit
+                contentScale = ContentScale.Fit,
+                colorFilter = ColorFilter.lighting(WhiteSurface, WhiteSurface)
             )
 
 
