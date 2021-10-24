@@ -1,4 +1,4 @@
-package com.konzerra.panakota.presentation.commoncomponents.convocationsview
+package com.konzerra.panakota.presentation.common_components.convocations_view
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.konzerra.panakota.domain.model.Convocation
-import com.konzerra.panakota.presentation.commoncomponents.ConvocationItem
+import com.konzerra.panakota.presentation.common_components.ConvocationItem
 
 @Composable
 fun ConvocationsView(

@@ -1,11 +1,7 @@
 package com.konzerra.panakota.presentation.navigation.components
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -28,25 +24,10 @@ fun DrawerItem(
     currentScreen: String,
     onClick: (String) -> Unit
 ){
-    val constraints = ConstraintSet {
-        val itemBox = createRefFor("itemBox")
-        val iconView = createRefFor("iconView")
-        constrain(itemBox) {
-            top.linkTo(parent.top)
-            bottom.linkTo(parent.bottom)
-            start.linkTo(iconView.end)
-            end.linkTo(parent.end)
-            width = Dimension.fillToConstraints
-            height = Dimension.wrapContent
-        }
-        constrain(iconView) {
-            top.linkTo(parent.top)
-            bottom.linkTo(parent.bottom)
-            start.linkTo(parent.start)
-            width = Dimension.wrapContent
-            height = Dimension.wrapContent
-        }
-    }
+
+    val constraints = setConstraints()
+    val borderStroke = if(currentScreen == thisScreen.route) BorderStroke(2.dp, Wood700) else BorderStroke(0.dp, Gray300)
+    val activeBackground = if(currentScreen == thisScreen.route) Wood100 else Gray300
 
     ConstraintLayout(
         constraints,
@@ -62,7 +43,8 @@ fun DrawerItem(
             .padding(start = 8.dp, end = 8.dp,  bottom = 8.dp)
             .fillMaxHeight()
             .fillMaxWidth()
-            .background(GrayForItems),
+            .border(borderStroke)
+            .background(activeBackground),
             contentAlignment = Alignment.CenterStart
         ) {
             Text(
@@ -82,8 +64,29 @@ fun DrawerItem(
                 .height(20.dp)
                 .width(20.dp),
             contentScale = ContentScale.Fit,
-            colorFilter = ColorFilter.lighting(WhiteSurface, WhiteSurface)
+            colorFilter = ColorFilter.lighting(White, White)
         )
     }
-
+}
+private fun setConstraints() : ConstraintSet{
+    val constraints = ConstraintSet {
+        val itemBox = createRefFor("itemBox")
+        val iconView = createRefFor("iconView")
+        constrain(itemBox) {
+            top.linkTo(parent.top)
+            bottom.linkTo(parent.bottom)
+            start.linkTo(iconView.end)
+            end.linkTo(parent.end)
+            width = Dimension.fillToConstraints
+            height = Dimension.wrapContent
+        }
+        constrain(iconView) {
+            top.linkTo(parent.top)
+            bottom.linkTo(parent.bottom)
+            start.linkTo(parent.start)
+            width = Dimension.wrapContent
+            height = Dimension.wrapContent
+        }
+    }
+    return constraints
 }

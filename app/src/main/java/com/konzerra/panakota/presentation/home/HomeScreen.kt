@@ -6,16 +6,19 @@ import androidx.compose.ui.layout.layoutId
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintSet
 import androidx.constraintlayout.compose.Dimension
-import com.konzerra.panakota.presentation.commoncomponents.TopBarText
-import com.konzerra.panakota.presentation.commoncomponents.Triangle
+import com.konzerra.panakota.presentation.common_components.topbars.TopBarText
+import com.konzerra.panakota.presentation.common_components.Triangle
 
 @Composable
-fun HomeScreen(){
+fun HomeScreen(
+    openDrawer: (Unit) -> Unit
+){
     val constraints = setConstraints()
     ConstraintLayout(constraints) {
         TopBarText(
             modifier = Modifier.layoutId("topBar"),
-            title = "Panakota"
+            title = "Panakota",
+            onMenuClicked = openDrawer,
         )
         Triangle(modifier = Modifier.layoutId("triangle"))
 

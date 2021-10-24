@@ -13,10 +13,10 @@ import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintSet
 import androidx.constraintlayout.compose.Dimension
-import com.konzerra.panakota.ui.theme.Blue500
 import com.konzerra.panakota.R
 import com.konzerra.panakota.ui.theme.BlackBasic
-import com.konzerra.panakota.ui.theme.WhiteSurface
+import com.konzerra.panakota.ui.theme.White
+import com.konzerra.panakota.ui.theme.Wood700
 
 
 @Composable
@@ -47,7 +47,7 @@ fun BottomBox(modifier: Modifier){
                 .width(40.dp)
                 .padding(end = 16.dp),
             contentScale = ContentScale.Fit,
-            colorFilter = ColorFilter.lighting(WhiteSurface, WhiteSurface)
+            colorFilter = ColorFilter.lighting(White, White)
         )
     }
 }

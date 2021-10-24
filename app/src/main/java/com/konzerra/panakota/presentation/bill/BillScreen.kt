@@ -15,12 +15,14 @@ import androidx.constraintlayout.compose.Dimension
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.konzerra.panakota.presentation.bill.components.BillTabs
 import com.konzerra.panakota.presentation.bill.components.DetailedBillCompose
-import com.konzerra.panakota.presentation.commoncomponents.TopBarText
+import com.konzerra.panakota.presentation.common_components.topbars.TopBarText
 
 @Composable
 fun BillScreen(
+    billId:String,
+    openDrawer: (Unit) -> Unit,
     viewModel: BillViewModel = hiltViewModel(),
-    billId:String
+
 ){
     viewModel.setBillId(billId)
     val state = viewModel.state.value
@@ -30,14 +32,21 @@ fun BillScreen(
                 TopBarText(
                     modifier = Modifier.layoutId("topBar"),
                     title = "Bill",
+                    onMenuClicked = {
+                        openDrawer(Unit)
+                    }
                 )
                 DetailedBillCompose(
                     modifier = Modifier,
                     bill = state.bill
                 )
                 BillTabs(
-                    modifier = Modifier.layoutId("billTabs"),
-                    updateState = {
+                    modifier = Modifier
+                        .layoutId("billTabs")
+                        .padding(start = 16.dp , end = 16.dp)
+                    ,
+                    currentTab = viewModel.currentTab.value,
+                    updateCurrentTab = {
                     viewModel.setCurrentTab(it)
                     Log.w("currentTab", "Now!")
                 })
@@ -62,7 +71,7 @@ private fun setConstraints(): ConstraintSet {
     val constraints = ConstraintSet {
         val detailedBill = createRefFor("detailedBill")
         val billTabs = createRefFor("billTabs")
-        val deputiesView = createRefFor("deputiesView")
+        val deputyListView = createRefFor("deputyListView")
         val buttonAddAll = createRefFor("buttonAddAll")
         constrain(detailedBill) {
             top.linkTo(parent.top)
@@ -76,7 +85,7 @@ private fun setConstraints(): ConstraintSet {
             width = Dimension.wrapContent
             height = Dimension.wrapContent
         }
-        constrain(deputiesView) {
+        constrain(deputyListView) {
             top.linkTo(billTabs.bottom)
             start.linkTo(parent.start)
             width = Dimension.wrapContent

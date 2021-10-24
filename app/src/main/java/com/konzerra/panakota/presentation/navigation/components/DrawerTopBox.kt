@@ -17,10 +17,10 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintSet
 import androidx.constraintlayout.compose.Dimension
-import com.konzerra.panakota.ui.theme.Blue700
 import com.konzerra.panakota.R
 import com.konzerra.panakota.ui.theme.BlackBasic
-import com.konzerra.panakota.ui.theme.WhiteSurface
+import com.konzerra.panakota.ui.theme.White
+import com.konzerra.panakota.ui.theme.Wood700
 
 @Composable
 fun TopBox(modifier: Modifier){
@@ -55,12 +55,12 @@ fun TopBox(modifier: Modifier){
             constraints,
             modifier = Modifier
                 .fillMaxSize()
-                .background(BlackBasic)
+                .background(Wood700)
         ) {
             Text(
                 text = "Panakota",
                 fontSize = 20.sp,
-                color = WhiteSurface,
+                color = White,
                 modifier = Modifier.layoutId("textView")
             )
             Image(
@@ -72,7 +72,7 @@ fun TopBox(modifier: Modifier){
                     .width(40.dp)
                     .padding(end = 10.dp),
                 contentScale = ContentScale.Fit,
-                colorFilter = ColorFilter.lighting(WhiteSurface, WhiteSurface)
+                colorFilter = ColorFilter.lighting(White, White)
             )
 
 

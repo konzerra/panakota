@@ -15,7 +15,8 @@ import com.konzerra.panakota.presentation.home.HomeScreen
 
 @Composable
 fun Navigation(
-    navController: NavHostController
+    navController: NavHostController,
+    openDrawer: (Unit) -> Unit
 ){
     val sharedViewModel:SharedViewModel = hiltViewModel()
     NavHost(
@@ -32,20 +33,28 @@ fun Navigation(
             )
         ){ entry ->
             sharedViewModel.setCurrentScreen(Screen.BillScreen.route)
-            BillScreen(billId = entry.arguments?.getString("billId") ?: "Nothing")
+            BillScreen(
+                billId = entry.arguments?.getString("billId") ?: "Nothing",
+                openDrawer = openDrawer
+            )
         }
 
         composable(
             route = Screen.BillListScreen.route
         ){
             sharedViewModel.setCurrentScreen(Screen.BillListScreen.route)
-            BillListScreen(navController)
+            BillListScreen(
+                navController,
+                openDrawer = openDrawer
+            )
         }
         composable(
             route = Screen.HomeScreen.route
         ){
             sharedViewModel.setCurrentScreen(Screen.HomeScreen.route)
-            HomeScreen()
+            HomeScreen(
+                openDrawer = openDrawer
+            )
         }
 
     }

@@ -1,7 +1,8 @@
-package com.konzerra.panakota.presentation.commoncomponents
+package com.konzerra.panakota.presentation.common_components.topbars
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -19,13 +20,14 @@ import com.konzerra.panakota.ui.theme.*
 @Composable
 fun TopBarText(
     title:String,
+    onMenuClicked:(Unit) -> Unit,
     modifier: Modifier
 ) {
     Box(
         modifier = modifier
             .fillMaxWidth()
             .height(56.dp)
-            .background(BlackBasic),
+            .background(Wood700),
     ){
         Row(modifier = Modifier.fillMaxHeight(),) {
             Image(
@@ -35,13 +37,16 @@ fun TopBarText(
                     .layoutId("iconMenuView")
                     .padding(end = 16.dp, start = 16.dp, top = 16.dp)
                     .height(25.dp)
-                    .width(25.dp),
+                    .width(25.dp)
+                    .clickable {
+                        onMenuClicked(Unit)
+                    },
                 contentScale = ContentScale.Fit,
-                colorFilter = ColorFilter.lighting(WhiteSurface, WhiteSurface)
+                colorFilter = ColorFilter.lighting(White, White)
             )
             Text(text = title,
                 fontSize = 20.sp,
-                color = WhiteSurface,
+                color = White,
                 modifier = Modifier
                     .align(alignment = Alignment.CenterVertically)
             )

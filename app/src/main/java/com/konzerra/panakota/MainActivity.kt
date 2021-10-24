@@ -18,6 +18,7 @@ import com.konzerra.panakota.presentation.navigation.Drawer
 import com.konzerra.panakota.presentation.navigation.Navigation
 import com.konzerra.panakota.ui.theme.PanakotaTheme
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -35,12 +36,23 @@ class MainActivity : ComponentActivity() {
                         drawerContent = {
                             Drawer(
                                 currentScreen = sharedViewModel.currentScreen.value,
-                            ){ screenRoute ->
-                                navController.navigate(screenRoute)
-                            }
+                                onItemClicked = {  screenRoute ->
+                                    navController.navigate(screenRoute)
+                                    coroutineScope.launch {
+                                        scaffoldState.drawerState.close()
+                                    }
+                                }
+                            )
                         },
                     ) {
-                        Navigation(navController)
+                        Navigation(
+                            navController,
+                            openDrawer = {
+                                coroutineScope.launch {
+                                    scaffoldState.drawerState.open()
+                                }
+                            }
+                        )
                     }
                 }
             }
@@ -50,11 +62,6 @@ class MainActivity : ComponentActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
     }
-}
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-
 }
 
 

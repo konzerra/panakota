@@ -1,4 +1,4 @@
-package com.konzerra.panakota.presentation.commoncomponents
+package com.konzerra.panakota.presentation.common_components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -12,9 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.konzerra.panakota.domain.model.DetailedBill
-import com.konzerra.panakota.ui.theme.Black500
-import com.konzerra.panakota.ui.theme.Blue500
-import com.konzerra.panakota.ui.theme.Blue700
+import com.konzerra.panakota.ui.theme.*
 
 @Composable
 fun BillItem(
@@ -27,7 +25,7 @@ fun BillItem(
         Row(modifier = Modifier
             .padding(start = 16.dp, end = 16.dp, bottom = 10.dp)
             .fillMaxWidth()
-            .background( Blue700)
+            .background( Wood700)
             .clickable { onItemClick(bill.id) }
         ) {
             Box(modifier = Modifier
@@ -35,7 +33,7 @@ fun BillItem(
                 .height(IntrinsicSize.Max)
             )
             Box(modifier = Modifier
-                .background(Blue500)
+                .background(Gray300)
                 .fillMaxWidth()
             ){
                 Column() {

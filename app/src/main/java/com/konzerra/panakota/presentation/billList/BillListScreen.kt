@@ -6,19 +6,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintSet
 import androidx.constraintlayout.compose.Dimension
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.konzerra.panakota.R
 import com.konzerra.panakota.presentation.billList.components.ItemsView
-import com.konzerra.panakota.presentation.commoncomponents.TopBarSearch
-import com.konzerra.panakota.presentation.commoncomponents.Triangle
-import com.konzerra.panakota.presentation.commoncomponents.convocationsview.ConvocationsView
+import com.konzerra.panakota.presentation.common_components.TopBarSearch
+import com.konzerra.panakota.presentation.common_components.Triangle
+import com.konzerra.panakota.presentation.common_components.convocations_view.ConvocationsView
 
 import com.konzerra.panakota.presentation.navigation.Screen
 
@@ -26,6 +24,7 @@ import com.konzerra.panakota.presentation.navigation.Screen
 @Composable
 fun BillListScreen(
     navController: NavController,
+    openDrawer: (Unit) -> Unit,
     viewModel: BillListViewModel = hiltViewModel()
 ){
     val state = viewModel.state.value
@@ -43,7 +42,7 @@ fun BillListScreen(
             modifier = Modifier.layoutId("topBar"),
             searchTitle = "Search",
             onMenuClicked = {
-
+                  openDrawer(Unit)
             },
             onSearchRequest = {
 

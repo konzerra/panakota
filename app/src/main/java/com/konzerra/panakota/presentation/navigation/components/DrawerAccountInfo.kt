@@ -1,8 +1,6 @@
 package com.konzerra.panakota.presentation.navigation.components
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
@@ -17,27 +15,24 @@ import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.constraintlayout.compose.ConstraintLayout
-import androidx.constraintlayout.compose.ConstraintSet
-import androidx.constraintlayout.compose.Dimension
-import com.konzerra.panakota.ui.theme.Blue700
 import com.konzerra.panakota.R
-import com.konzerra.panakota.ui.theme.GrayForItems
-import com.konzerra.panakota.ui.theme.WhiteSurface
+import com.konzerra.panakota.ui.theme.Gray300
+import com.konzerra.panakota.ui.theme.Gray500
+import com.konzerra.panakota.ui.theme.White
+import com.konzerra.panakota.ui.theme.Wood1000
 
 
 @Composable
 fun AccountInfo(modifier: Modifier){
     Surface(
         modifier = modifier,
-        color = WhiteSurface) {
+        color = White) {
         Card(modifier = Modifier
             .padding(top = 4.dp, end = 8.dp, bottom = 4.dp)
             .fillMaxWidth()
             .height(86.dp),
-            backgroundColor = GrayForItems,
+            backgroundColor = Wood1000,
             shape = RoundedCornerShape(topEnd = 30.dp, bottomEnd = 30.dp),
-
             ){
             Row(
                 verticalAlignment = Alignment.CenterVertically
@@ -52,12 +47,12 @@ fun AccountInfo(modifier: Modifier){
                         .height(40.dp)
                         .width(40.dp),
                     contentScale = ContentScale.Fit,
-                    colorFilter = ColorFilter.lighting(WhiteSurface, WhiteSurface)
+                    colorFilter = ColorFilter.lighting(White, White)
                 )
                 Text(
                     text = "Guest",
                     fontSize = 18.sp,
-
+                    color = White,
                     modifier = Modifier.layoutId("textView")
                 )
             }

@@ -12,10 +12,8 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintSet
 import androidx.constraintlayout.compose.Dimension
 import com.konzerra.panakota.presentation.navigation.components.*
-import com.konzerra.panakota.ui.theme.Black500
 import com.konzerra.panakota.ui.theme.BlackBasic
-import com.konzerra.panakota.ui.theme.Blue500
-import com.konzerra.panakota.ui.theme.WhiteSurface
+import com.konzerra.panakota.ui.theme.White
 
 @Composable
 fun Drawer(
@@ -26,21 +24,12 @@ fun Drawer(
     ConstraintLayout(constraints,
         modifier = Modifier
             .fillMaxSize()
-            .background(WhiteSurface)
+            .background(White)
     ) {
         BottomBox(modifier = Modifier.layoutId("bottomBox"))
         DrawerItemList(modifier = Modifier.layoutId("drawerItemList"), currentScreen){ screen ->
             onItemClicked(screen)
         }
-        Card(modifier =  Modifier
-            .layoutId("shadowItem")
-            .padding(bottom = 8.dp)
-            .fillMaxWidth()
-            .height(1.dp),
-            backgroundColor = BlackBasic,
-            elevation = 4.dp,
-            shape = RoundedCornerShape(0.dp)
-        ){}
         AccountInfo(modifier = Modifier.layoutId("accountInfo"))
         TopBox(modifier = Modifier.layoutId("topBox"))
     }
@@ -51,13 +40,7 @@ private fun setConstraints():ConstraintSet{
         val bottomBox = createRefFor("bottomBox")
         val accountInfo = createRefFor("accountInfo")
         val drawerItemList = createRefFor("drawerItemList")
-        val shadowItem = createRefFor("shadowItem")
-        constrain(shadowItem) {
-            top.linkTo(drawerItemList.bottom)
-            start.linkTo(parent.start)
-            width = Dimension.wrapContent
-            height = Dimension.wrapContent
-        }
+
         constrain(topBox) {
             top.linkTo(parent.top)
             start.linkTo(parent.start)

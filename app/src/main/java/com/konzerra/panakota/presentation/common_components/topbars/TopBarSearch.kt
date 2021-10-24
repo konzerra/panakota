@@ -1,7 +1,8 @@
-package com.konzerra.panakota.presentation.commoncomponents
+package com.konzerra.panakota.presentation.common_components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
@@ -20,9 +21,7 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintSet
 import androidx.constraintlayout.compose.Dimension
 import com.konzerra.panakota.R
-import com.konzerra.panakota.ui.theme.Blue1000
-import com.konzerra.panakota.ui.theme.Blue500
-import com.konzerra.panakota.ui.theme.Blue700
+import com.konzerra.panakota.ui.theme.*
 
 @Composable
 fun TopBarSearch(
@@ -34,6 +33,67 @@ fun TopBarSearch(
     var textFieldState by remember {
         mutableStateOf("")
     }
+    val constraints = setConstraints()
+
+    Card(modifier = modifier
+        .height(56.dp),
+        elevation =  4.dp,
+        shape = RoundedCornerShape(0.dp),
+    ) {
+        ConstraintLayout(
+            constraints,
+            modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight()
+                .background(Wood700)
+        ) {
+            Image(
+                painterResource(R.drawable.ic_menu),
+                "",
+                modifier = Modifier
+                    .layoutId("iconMenuView")
+                    .padding(end = 16.dp, start = 16.dp)
+                    .height(25.dp)
+                    .width(25.dp)
+                    .clickable {
+                        onMenuClicked(Unit)
+                    },
+                contentScale = ContentScale.Fit,
+                colorFilter = ColorFilter.lighting(White, White)
+            )
+            TextField(
+                modifier = Modifier
+                    .layoutId("editTextView")
+                    .padding(end = 5.dp)
+                ,
+                value = textFieldState,
+                label = { Text(searchTitle, color = White) },
+                colors = TextFieldDefaults.textFieldColors(
+                    textColor = White,
+                    backgroundColor = Color.Transparent,
+                    focusedIndicatorColor = Color.Transparent,
+                    unfocusedIndicatorColor = Color.Transparent,
+                    disabledIndicatorColor = Color.Transparent,
+                ),
+                onValueChange = {
+                    textFieldState=it
+                },
+            )
+            Image(
+                painterResource(R.drawable.ic_search),
+                "",
+                modifier = Modifier
+                    .layoutId("iconSearchView")
+                    .padding(end = 100.dp,)
+                    .height(25.dp)
+                    .width(25.dp),
+                contentScale = ContentScale.Fit,
+                colorFilter = ColorFilter.lighting(White, White)
+            )
+        }
+    }
+}
+private fun setConstraints():ConstraintSet{
     val constraints = ConstraintSet {
         val editTextView = createRefFor("editTextView")
         val iconMenuView = createRefFor("iconMenuView")
@@ -61,60 +121,5 @@ fun TopBarSearch(
             height = Dimension.wrapContent
         }
     }
-
-    Card(modifier = modifier
-        .height(56.dp),
-        elevation =  4.dp,
-        shape = RoundedCornerShape(0.dp),
-    ) {
-        ConstraintLayout(
-            constraints,
-            modifier = Modifier
-                .fillMaxWidth()
-                .fillMaxHeight()
-                .background(Blue500)
-        ) {
-            Image(
-                painterResource(R.drawable.ic_menu),
-                "",
-                modifier = Modifier
-                    .layoutId("iconMenuView")
-                    .padding(end = 16.dp, start = 16.dp)
-                    .height(25.dp)
-                    .width(25.dp),
-                contentScale = ContentScale.Fit,
-                colorFilter = ColorFilter.lighting(Blue700, Blue700)
-            )
-            TextField(
-                modifier = Modifier
-                    .layoutId("editTextView")
-                    .padding(end = 5.dp)
-                ,
-                value = textFieldState,
-                label = { Text(searchTitle, color = Blue1000) },
-                colors = TextFieldDefaults.textFieldColors(
-                    textColor = Blue1000,
-                    backgroundColor = Color.Transparent,
-                    focusedIndicatorColor = Color.Transparent,
-                    unfocusedIndicatorColor = Color.Transparent,
-                    disabledIndicatorColor = Color.Transparent,
-                ),
-                onValueChange = {
-                    textFieldState=it
-                },
-            )
-            Image(
-                painterResource(R.drawable.ic_search),
-                "",
-                modifier = Modifier
-                    .layoutId("iconSearchView")
-                    .padding(end = 100.dp,)
-                    .height(25.dp)
-                    .width(25.dp),
-                contentScale = ContentScale.Fit,
-                colorFilter = ColorFilter.lighting(Blue1000, Blue1000)
-            )
-        }
-    }
-
+    return constraints
 }

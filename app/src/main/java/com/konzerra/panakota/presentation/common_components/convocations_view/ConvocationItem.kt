@@ -1,23 +1,18 @@
-package com.konzerra.panakota.presentation.commoncomponents
+package com.konzerra.panakota.presentation.common_components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.konzerra.panakota.domain.model.Convocation
-import com.konzerra.panakota.ui.theme.Black500
-import com.konzerra.panakota.ui.theme.Blue500
-import com.konzerra.panakota.ui.theme.Blue700
+import com.konzerra.panakota.ui.theme.*
 
 @Composable
 fun ConvocationItem(convocation: Convocation){
@@ -26,17 +21,17 @@ fun ConvocationItem(convocation: Convocation){
             .padding(start = 10.dp)
             .border(
                 width = 1.dp,
-                color = Blue700,
+                color = Wood700,
                 shape = RoundedCornerShape(100.dp)
             )
             .clip(RoundedCornerShape(100.dp))
-            .background(color = Blue500)
+            .background(color = Wood100)
     ) {
         Text(
             text = convocation.name,
             style = MaterialTheme.typography.body1,
             textAlign = TextAlign.Center,
-            modifier = Modifier.padding(start = 5.dp, end = 5.dp, bottom = 3.dp)
+            modifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 6.dp, top = 5.dp)
         )
     }
 }

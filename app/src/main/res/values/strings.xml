@@ -2,6 +2,9 @@
     <string name="app_name">Panakota</string>
     <string name="filter_by_convocations">Filter by convocations</string>
     <string name="initiators">Initiators</string>
+    <string name="_for">For</string>
+    <string name="against">Against</string>
+    <string name="absent">Absent</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="voted">Voted</string>
