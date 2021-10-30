@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.konzerra.panakota.common.Resource
 import com.konzerra.panakota.domain.model.DetailedBill
-import com.konzerra.panakota.domain.usecase.GetBillsUseCase
+import com.konzerra.panakota.domain.usecase.GetBillListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class BillListViewModel @Inject constructor(
-    private val getBillsUseCase: GetBillsUseCase
+    private val getBillListUseCase: GetBillListUseCase
 ):ViewModel(){
     private val _state = mutableStateOf(BillListState())
     val state : State<BillListState> = _state
@@ -36,7 +36,7 @@ class BillListViewModel @Inject constructor(
     }
     private fun getBills(){
 
-        getBillsUseCase().onEach { result->
+        getBillListUseCase().onEach { result->
             when(result){
                 is Resource.Success->{
                     _state.value = BillListState(bills = result.data ?: emptyList())

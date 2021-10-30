@@ -51,7 +51,7 @@ fun BillTabs(
             .layoutId("btFor"),
             currentTab = currentTab,
             tabId = 1,
-            tabText = stringResource(id = R.string.initiators),
+            tabText = stringResource(id = R.string.yes),
             updateCurrentTab = {
                 updateCurrentTab(it)
             }
@@ -60,7 +60,7 @@ fun BillTabs(
             .layoutId("btAgainst"),
             currentTab = currentTab,
             tabId = 2,
-            tabText = stringResource(id = R.string.initiators),
+            tabText = stringResource(id = R.string.no),
             updateCurrentTab = {
                 updateCurrentTab(it)
             }
@@ -69,7 +69,7 @@ fun BillTabs(
             .layoutId("btAbsent"),
             currentTab = currentTab,
             tabId = 3,
-            tabText = stringResource(id = R.string.initiators),
+            tabText = stringResource(id = R.string.absent),
             updateCurrentTab = {
                 updateCurrentTab(it)
             }

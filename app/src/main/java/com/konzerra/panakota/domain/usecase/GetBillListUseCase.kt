@@ -10,18 +10,18 @@ import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
-class GetBillsUseCase @Inject constructor(
+class GetBillListUseCase @Inject constructor(
     private val repository: PanRepository
 ) {
     operator fun invoke(): Flow<Resource<List<DetailedBill>>> = flow {
         try {
-            emit(Resource.Loading<List<DetailedBill>>())
+            emit(Resource.Loading())
             val bills = repository.getBills().map{ it.toBill()}
-            emit(Resource.Success<List<DetailedBill>>(bills))
+            emit(Resource.Success(bills))
         } catch(e: HttpException) {
-            emit(Resource.Error<List<DetailedBill>>(e.localizedMessage ?: "An unexpected error occurred"))
+            emit(Resource.Error(e.localizedMessage ?: "An unexpected error occurred"))
         } catch(e: IOException) {
-            emit(Resource.Error<List<DetailedBill>>("Couldn't reach server. Check your internet connection."))
+            emit(Resource.Error("Couldn't reach server. Check your internet connection."))
         }
     }
 }
