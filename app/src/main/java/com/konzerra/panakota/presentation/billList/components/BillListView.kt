@@ -10,7 +10,7 @@ import com.konzerra.panakota.domain.model.DetailedBill
 import com.konzerra.panakota.presentation.common_components.BillItem
 
 @Composable
-fun ItemsView(
+fun BillListView(
     modifier: Modifier,
     bills:List<DetailedBill>,
     onItemClicked: (String) -> Unit

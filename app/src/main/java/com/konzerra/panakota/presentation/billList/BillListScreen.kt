@@ -13,7 +13,7 @@ import androidx.constraintlayout.compose.Dimension
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.konzerra.panakota.R
-import com.konzerra.panakota.presentation.billList.components.ItemsView
+import com.konzerra.panakota.presentation.billList.components.BillListView
 import com.konzerra.panakota.presentation.common_components.TopBarSearch
 import com.konzerra.panakota.presentation.common_components.Triangle
 import com.konzerra.panakota.presentation.common_components.convocations_view.ConvocationsView
@@ -30,7 +30,7 @@ fun BillListScreen(
     val state = viewModel.state.value
     val constraints = setConstraints() //see at the end
     ConstraintLayout(constraints) {
-        ItemsView(
+        BillListView(
             modifier = Modifier.layoutId("itemsView"),
             bills = state.bills,
             onItemClicked = { billId->

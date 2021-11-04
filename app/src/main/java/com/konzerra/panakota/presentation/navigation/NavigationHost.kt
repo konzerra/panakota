@@ -12,6 +12,7 @@ import com.konzerra.panakota.SharedViewModel
 import com.konzerra.panakota.presentation.bill.BillScreen
 import com.konzerra.panakota.presentation.billList.BillListScreen
 import com.konzerra.panakota.presentation.home.HomeScreen
+import com.konzerra.panakota.presentation.partylist.PartyListScreen
 
 @Composable
 fun Navigation(
@@ -53,6 +54,15 @@ fun Navigation(
         ){
             sharedViewModel.setCurrentScreen(Screen.HomeScreen.route)
             HomeScreen(
+                openDrawer = openDrawer
+            )
+        }
+        composable(
+            route = Screen.PartyListScreen.route
+        ){
+            sharedViewModel.setCurrentScreen(Screen.PartyListScreen.route)
+            PartyListScreen(
+                navController,
                 openDrawer = openDrawer
             )
         }

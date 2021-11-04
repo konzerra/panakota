@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Panakota</string>
     <string name="filter_by_convocations">Filter by convocations</string>
+    <string name="filter_by_elections">Filter by elections</string>
+
     <string name="initiators">Initiators</string>
     <string name="_for">For</string>
     <string name="against">Against</string>
@@ -10,6 +12,7 @@
     <string name="voted">Voted</string>
     <string name="link_to_doc">Link</string>
     <string name="look">Look</string>
+
     <string name="home">Home</string>
     <string name="bill">Bill</string>
     <string name="bills">Bills</string>
@@ -23,6 +26,7 @@
     <string name="deputies">Deputies</string>
     <string name="election">Election</string>
     <string name="elections">Elections</string>
+
     //test resources
     <string name="bill1">О проекте Закона «О признании утратившим силу Закона Кыргызской Республики «О закрытом акционерном обществе «Пятый канал»</string>
     <string name="bill2">О защите от ложной и недостоверной информации</string>
