@@ -18,7 +18,7 @@ val Typography = Typography(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,
         fontSize = 10.sp,
-        color = Black500
+        color = PurpleDark
     ),
 
 

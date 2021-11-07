@@ -1,9 +1,8 @@
-package com.konzerra.panakota.presentation.bill
+package com.konzerra.panakota.presentation.party
 
 import android.util.Log
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.MaterialTheme
@@ -21,26 +20,26 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintSet
 import androidx.constraintlayout.compose.Dimension
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.konzerra.panakota.domain.model.Deputy
+import com.konzerra.panakota.domain.model.Party
+import com.konzerra.panakota.presentation.bill.BillViewModel
 import com.konzerra.panakota.presentation.bill.components.BillTabs
 import com.konzerra.panakota.presentation.bill.components.DeputyListView
 import com.konzerra.panakota.presentation.bill.components.DetailedBillCompose
 import com.konzerra.panakota.presentation.common_components.Triangle
 import com.konzerra.panakota.presentation.common_components.buttons.ButtonBottom
-import com.konzerra.panakota.presentation.common_components.deputy_item.DeputyItem
 import com.konzerra.panakota.presentation.common_components.topbars.TopBarText
 
 @Composable
 fun BillScreen(
-    billId:String,
+    party: Party,
     openDrawer: (Unit) -> Unit,
     viewModel: BillViewModel = hiltViewModel(),
 
-){
-    viewModel.setBillId(billId)
+    ){
+
     val state = viewModel.state.value
     val constraints = setConstraints()
-    val screenHeight =remember{
+    val screenHeight = remember{
         mutableStateOf(0.dp)
     }
     val density = LocalDensity.current.density
@@ -144,4 +143,3 @@ private fun setConstraints(): ConstraintSet {
     }
     return constraints
 }
-

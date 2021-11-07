@@ -14,7 +14,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.konzerra.panakota.R
 import com.konzerra.panakota.presentation.billList.components.BillListView
-import com.konzerra.panakota.presentation.common_components.TopBarSearch
+import com.konzerra.panakota.presentation.common_components.topbars.TopBarSearch
 import com.konzerra.panakota.presentation.common_components.Triangle
 import com.konzerra.panakota.presentation.common_components.convocations_view.ConvocationsView
 

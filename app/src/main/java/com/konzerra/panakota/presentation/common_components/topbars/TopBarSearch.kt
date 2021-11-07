@@ -1,4 +1,4 @@
-package com.konzerra.panakota.presentation.common_components
+package com.konzerra.panakota.presentation.common_components.topbars
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

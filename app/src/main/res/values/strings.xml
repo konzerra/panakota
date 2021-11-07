@@ -13,6 +13,9 @@
     <string name="link_to_doc">Link</string>
     <string name="look">Look</string>
 
+    <string name="candidates">Candidates</string>
+    <string name="leaders">Leaders</string>
+
     <string name="home">Home</string>
     <string name="bill">Bill</string>
     <string name="bills">Bills</string>

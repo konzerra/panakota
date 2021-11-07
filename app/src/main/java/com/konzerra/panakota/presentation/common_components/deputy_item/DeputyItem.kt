@@ -1,4 +1,4 @@
-package com.konzerra.panakota.presentation.common_components
+package com.konzerra.panakota.presentation.common_components.deputy_item
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -27,41 +27,44 @@ fun DeputyItem(
     ConstraintLayout(
         constraints,
         modifier = Modifier
-            .padding(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 8.dp)
+            .padding(start = 16.dp, end = 16.dp, top = 4.dp, bottom = 4.dp)
+            .fillMaxWidth()
+
     ) {
         Box(modifier = Modifier
             .layoutId("mainBox")
             .padding(top = 10.dp)
             .fillMaxWidth()
-            .height(IntrinsicSize.Max)
-            .background(Gray300)
+            .fillMaxHeight()
+            .background(Gray300),
+            contentAlignment = Alignment.CenterStart
         ){
             Box(modifier = Modifier
                 .width(6.dp)
-                .height(IntrinsicSize.Max)
+                .fillMaxHeight()
                 .background(Wood700)
             )
         }
         Text(
             modifier = Modifier
                 .layoutId("tvName")
-                .padding(start = 22.dp, top = 16.dp),
+                .padding(start = 22.dp, top = 24.dp),
             text = deputy.name
         )
         Text(
             modifier = Modifier
                 .layoutId("tvDate")
-                .padding(start = 22.dp, top = 12.dp),
+                .padding(start = 22.dp, top = 12.dp, bottom = 16.dp),
             text = deputy.date
         )
         Box(modifier = Modifier
             .layoutId("buttonAdd")
-            .padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
+            .padding(start = 8.dp, end = 0.dp, bottom = 0.dp)
             .height(44.dp)
-            .width(120.dp)
+            .width(140.dp)
             .border(BorderStroke(2.dp, Wood700))
             .background(Wood100),
-            contentAlignment = Alignment.CenterStart
+            contentAlignment = Alignment.Center
         ) {
             Text(
                 text = "to My list"
@@ -78,13 +81,14 @@ private fun setConstraints(): ConstraintSet {
         val buttonAdd = createRefFor("buttonAdd")
         constrain(mainBox) {
             top.linkTo(parent.top)
+            bottom.linkTo(parent.bottom)
             start.linkTo(parent.start)
-            end.linkTo(buttonAdd.start)
+            end.linkTo(parent.end)
             width = Dimension.fillToConstraints
-            height = Dimension.wrapContent
+            height = Dimension.fillToConstraints
         }
         constrain(tvName) {
-            top.linkTo(mainBox.bottom)
+            top.linkTo(parent.top)
             start.linkTo(parent.start)
             width = Dimension.wrapContent
             height = Dimension.wrapContent
@@ -96,8 +100,8 @@ private fun setConstraints(): ConstraintSet {
             height = Dimension.wrapContent
         }
         constrain(buttonAdd) {
-            bottom.linkTo(mainBox.bottom)
-            end.linkTo(mainBox.end)
+            bottom.linkTo(parent.bottom)
+            end.linkTo(parent.end)
             width = Dimension.wrapContent
             height = Dimension.wrapContent
         }
