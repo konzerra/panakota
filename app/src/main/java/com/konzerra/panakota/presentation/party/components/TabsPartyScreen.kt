@@ -18,7 +18,7 @@ import com.konzerra.panakota.presentation.common_components.tabs.CustomTab
 import com.konzerra.panakota.ui.theme.Gray300
 
 @Composable
-fun BillTabs(
+fun TabsPartyScreen(
     modifier: Modifier,
     currentTab:Int,
     updateCurrentTab : (Int) -> Unit

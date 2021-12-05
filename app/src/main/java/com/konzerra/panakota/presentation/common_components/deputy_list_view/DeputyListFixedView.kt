@@ -1,6 +1,5 @@
 package com.konzerra.panakota.presentation.bill.components
 
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
@@ -10,11 +9,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.konzerra.panakota.domain.model.Deputy
-import com.konzerra.panakota.presentation.common_components.deputy_item.DeputyItem
+import com.konzerra.panakota.presentation.common_components.deputy_list_view.DeputyItem
 
 
 @Composable
-fun DeputyListView(
+fun DeputyListFixedView(
     modifier: Modifier,
     screenHeight:Dp,
     list:List<Deputy>,

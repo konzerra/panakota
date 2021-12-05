@@ -14,7 +14,7 @@ import com.konzerra.panakota.presentation.common_components.ConvocationItem
 fun ElectionsView(
     modifier: Modifier
 ){
-    LazyRow(modifier = modifier.padding(start = 16.dp, top = 16.dp, end = 16.dp)){
+    LazyRow(modifier = modifier){
         itemsIndexed(
             listOf(
                 Election("Выборы в ЖК 2021"),

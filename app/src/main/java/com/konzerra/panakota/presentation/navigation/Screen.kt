@@ -1,6 +1,7 @@
 package com.konzerra.panakota.presentation.navigation
 
 import com.konzerra.panakota.R
+import com.konzerra.panakota.domain.model.Party
 
 
 sealed class Screen(
@@ -33,8 +34,8 @@ sealed class Screen(
         R.string.parties,
         R.drawable.ic_party
     )
-    object ListScreen : Screen(
-        "list_screen",
+    object MyListsScreen : Screen(
+        "my_lists_screen",
         R.string.my_lists,
         R.drawable.ic_list
     )
@@ -84,5 +85,6 @@ sealed class Screen(
             }
         }
     }
+
 }
 

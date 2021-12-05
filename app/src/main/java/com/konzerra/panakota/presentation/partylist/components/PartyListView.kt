@@ -14,7 +14,7 @@ import com.konzerra.panakota.presentation.common_components.party_item.PartyItem
 fun PartyListView(
     modifier: Modifier,
     partyList:List<Party>,
-    onItemClicked: (Party) -> Unit
+    onItemClicked: (String) -> Unit
 ){
         LazyColumn(modifier = modifier
             .padding(top = 16.dp)

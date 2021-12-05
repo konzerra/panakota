@@ -59,6 +59,4 @@ class BillViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 }
-/*
 
-)*/

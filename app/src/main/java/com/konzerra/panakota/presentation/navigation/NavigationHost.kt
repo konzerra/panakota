@@ -12,6 +12,8 @@ import com.konzerra.panakota.SharedViewModel
 import com.konzerra.panakota.presentation.bill.BillScreen
 import com.konzerra.panakota.presentation.billList.BillListScreen
 import com.konzerra.panakota.presentation.home.HomeScreen
+import com.konzerra.panakota.presentation.mylists.MyListsScreen
+import com.konzerra.panakota.presentation.party.PartyScreen
 import com.konzerra.panakota.presentation.partylist.PartyListScreen
 
 @Composable
@@ -66,6 +68,26 @@ fun Navigation(
                 openDrawer = openDrawer
             )
         }
-
+        composable(
+            route = Screen.PartyScreen.route+"/{partyId}",
+            arguments = listOf(
+                navArgument(name = "partyId"){
+                    type = NavType.StringType
+                    defaultValue = "Nothing"
+                }
+            )
+        ){ entry ->
+            sharedViewModel.setCurrentScreen(Screen.PartyScreen.route)
+            PartyScreen(
+                openDrawer = openDrawer,
+                party = entry.arguments?.getString("partyId") ?: "Nothing"
+            )
+        }
+        composable(
+            route = Screen.MyListsScreen.route
+        ){
+            sharedViewModel.setCurrentScreen(Screen.MyListsScreen.route)
+            MyListsScreen(openDrawer = openDrawer)
+        }
     }
 }

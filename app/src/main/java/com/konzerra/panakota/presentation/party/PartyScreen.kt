@@ -1,9 +1,8 @@
 package com.konzerra.panakota.presentation.party
 
 import android.util.Log
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -21,19 +20,21 @@ import androidx.constraintlayout.compose.ConstraintSet
 import androidx.constraintlayout.compose.Dimension
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.konzerra.panakota.domain.model.Party
-import com.konzerra.panakota.presentation.bill.BillViewModel
-import com.konzerra.panakota.presentation.bill.components.BillTabs
-import com.konzerra.panakota.presentation.bill.components.DeputyListView
-import com.konzerra.panakota.presentation.bill.components.DetailedBillCompose
+import com.konzerra.panakota.presentation.bill.components.DeputyListFixedView
 import com.konzerra.panakota.presentation.common_components.Triangle
 import com.konzerra.panakota.presentation.common_components.buttons.ButtonBottom
+import com.konzerra.panakota.presentation.common_components.elections_view.ElectionsView
+import com.konzerra.panakota.presentation.common_components.topbars.TopBarSearch
 import com.konzerra.panakota.presentation.common_components.topbars.TopBarText
+import com.konzerra.panakota.presentation.party.components.TabsPartyScreen
+import com.konzerra.panakota.presentation.partylist.components.DetailedPartyView
+import com.konzerra.panakota.ui.theme.Wood700
 
 @Composable
-fun BillScreen(
-    party: Party,
+fun PartyScreen(
+    party: String,
     openDrawer: (Unit) -> Unit,
-    viewModel: BillViewModel = hiltViewModel(),
+    viewModel: PartyViewModel = hiltViewModel(),
 
     ){
 
@@ -43,24 +44,36 @@ fun BillScreen(
         mutableStateOf(0.dp)
     }
     val density = LocalDensity.current.density
-    state.bill?.let{
+    state.party?.let{
         ConstraintLayout(
             constraints,
-            modifier = Modifier.fillMaxSize()
-        ) {
-            LazyColumn(modifier = Modifier
-                .layoutId("deputyListView")
+            modifier = Modifier
                 .fillMaxSize()
                 .onGloballyPositioned {
                     screenHeight.value = it.size.height.dp / density
                 }
+        ) {
+            LazyColumn(modifier = Modifier
+                .layoutId("deputyListView")
+                .fillMaxSize()
+
             ) {
                 item{
-                    DetailedBillCompose(
-                        modifier = Modifier,
-                        bill = state.bill
+                    DetailedPartyView(
+                        party = state.party
                     )
-                    BillTabs(
+                    Box(modifier = Modifier
+                        .padding(top = 4.dp, start = 16.dp, end = 16.dp)
+                        .height(4.dp)
+                        .fillMaxWidth()
+                        .background(Wood700)
+                    )
+                    Text(
+                        text = "Sort by elections",
+                        modifier = Modifier.padding(16.dp)
+                    )
+                    ElectionsView(modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 16.dp))
+                    TabsPartyScreen(
                         modifier = Modifier
                             .padding(start = 16.dp, end = 16.dp)
                         ,
@@ -69,7 +82,7 @@ fun BillScreen(
                             viewModel.setCurrentTab(it)
                             Log.w("currentTab", "Now!")
                         })
-                    DeputyListView(
+                    DeputyListFixedView(
                         modifier = Modifier,
                         screenHeight = screenHeight.value,
                         list = emptyList() ,
@@ -83,11 +96,14 @@ fun BillScreen(
                 onClicked = {
 
                 })
-            TopBarText(
+            TopBarSearch(
                 modifier = Modifier.layoutId("topBar"),
-                title = "Bill",
+                searchTitle = "Search in list",
                 onMenuClicked = {
                     openDrawer(Unit)
+                },
+                onSearchRequest = {
+
                 }
             )
             Triangle(modifier = Modifier.layoutId("topTriangle"))
@@ -98,6 +114,17 @@ fun BillScreen(
     if(state.error.isNotBlank()) {
         Text(
             text = state.error,
+            color = MaterialTheme.colors.error,
+            textAlign = TextAlign.Center,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 20.dp)
+
+        )
+    }
+    if(state.isLoading){
+        Text(
+            text = "Loading",
             color = MaterialTheme.colors.error,
             textAlign = TextAlign.Center,
             modifier = Modifier

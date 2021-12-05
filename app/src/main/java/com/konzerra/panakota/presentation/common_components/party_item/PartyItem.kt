@@ -22,7 +22,7 @@ import com.konzerra.panakota.ui.theme.Wood700
 @Composable
 fun PartyItem(
     party: Party,
-    onItemClick: (Party) -> Unit
+    onItemClick: (String) -> Unit
 ){
     Card(modifier = Modifier,
         elevation =  4.dp,
@@ -31,7 +31,7 @@ fun PartyItem(
             .padding(start = 16.dp, end = 16.dp, bottom = 10.dp)
             .fillMaxWidth()
             .background( Wood700)
-            .clickable { onItemClick(party) }
+            .clickable { onItemClick(party.id) }
         ) {
             Box(modifier = Modifier
                 .width(6.dp)

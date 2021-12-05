@@ -32,7 +32,7 @@ fun PartyListScreen(
             modifier = Modifier.layoutId("partyListView"),
             partyList = state.partyList,
             onItemClicked = { party->
-                navController.navigate(Screen.PartyScreen.route) //.withArgs(party)
+                navController.navigate(Screen.PartyScreen.withArgs(party))
             })
         ElectionsView(modifier = Modifier.layoutId("electionsView"))
         TextFilter(modifier = Modifier.layoutId("tvSort"))

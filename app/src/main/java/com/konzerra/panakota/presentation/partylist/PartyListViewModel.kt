@@ -26,6 +26,8 @@ class PartyListViewModel @Inject constructor(
             "Биримдик",
             "12/12/2012",
             "34643",
+            "Eurasian, social-democracy",
+            "Sooronbay Jeenbekov"
         )
         val list = listOf(party1)
         _state.value=PartyListState(partyList= list)

@@ -1,4 +1,4 @@
-package com.konzerra.panakota.presentation.common_components.deputy_item
+package com.konzerra.panakota.presentation.common_components.deputy_list_view
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background

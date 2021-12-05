@@ -3,7 +3,6 @@ package com.konzerra.panakota.presentation.bill
 import android.util.Log
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.MaterialTheme
@@ -21,13 +20,11 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintSet
 import androidx.constraintlayout.compose.Dimension
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.konzerra.panakota.domain.model.Deputy
 import com.konzerra.panakota.presentation.bill.components.BillTabs
-import com.konzerra.panakota.presentation.bill.components.DeputyListView
+import com.konzerra.panakota.presentation.bill.components.DeputyListFixedView
 import com.konzerra.panakota.presentation.bill.components.DetailedBillCompose
 import com.konzerra.panakota.presentation.common_components.Triangle
 import com.konzerra.panakota.presentation.common_components.buttons.ButtonBottom
-import com.konzerra.panakota.presentation.common_components.deputy_item.DeputyItem
 import com.konzerra.panakota.presentation.common_components.topbars.TopBarText
 
 @Composable
@@ -47,14 +44,15 @@ fun BillScreen(
     state.bill?.let{
         ConstraintLayout(
             constraints,
-            modifier = Modifier.fillMaxSize()
-        ) {
-            LazyColumn(modifier = Modifier
-                .layoutId("deputyListView")
+            modifier = Modifier
                 .fillMaxSize()
                 .onGloballyPositioned {
                     screenHeight.value = it.size.height.dp / density
                 }
+        ) {
+            LazyColumn(modifier = Modifier
+                .layoutId("deputyListView")
+                .fillMaxSize()
             ) {
                 item{
                     DetailedBillCompose(
@@ -70,7 +68,7 @@ fun BillScreen(
                             viewModel.setCurrentTab(it)
                             Log.w("currentTab", "Now!")
                         })
-                    DeputyListView(
+                    DeputyListFixedView(
                         modifier = Modifier,
                         screenHeight = screenHeight.value,
                         list = emptyList() ,

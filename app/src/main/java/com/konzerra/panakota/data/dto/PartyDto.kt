@@ -6,16 +6,16 @@ import com.konzerra.panakota.domain.model.Party
 data class PartyDto(
     val name:String,
     val date:String,
-    val initiators:List<String>,
-    val no:Int,
-    val yes:Int,
-    val link:String,
-    val id:String
+    val id:String,
+    val ideology:String,
+    val leader:String
 )
 fun PartyDto.toParty(): Party {
     return Party(
         name = name,
         date = date,
-        id = id
+        id = id,
+        ideology = ideology,
+        leader = leader
     )
 }

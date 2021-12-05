@@ -64,7 +64,7 @@ fun DrawerItemList(
                         }
                     )
                     DrawerItem(
-                        thisScreen = Screen.ListScreen,
+                        thisScreen = Screen.MyListsScreen,
                         currentScreen = currentScreen,
                         onClick = { screen ->
                             onItemClicked(screen)
