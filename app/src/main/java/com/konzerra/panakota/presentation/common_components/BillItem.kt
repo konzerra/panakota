@@ -20,8 +20,9 @@ fun BillItem(
     onItemClick: (String) -> Unit
 ){
     Card(modifier = Modifier,
-        elevation =  4.dp,
-        shape = RoundedCornerShape(0.dp),){
+        //elevation =  4.dp,
+        shape = RoundedCornerShape(0.dp),
+    ){
         Row(modifier = Modifier
             .padding(start = 16.dp, end = 16.dp, bottom = 10.dp)
             .fillMaxWidth()

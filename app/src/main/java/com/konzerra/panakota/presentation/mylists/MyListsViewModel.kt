@@ -1,11 +1,9 @@
 package com.konzerra.panakota.presentation.mylists
 
-import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import com.konzerra.panakota.domain.model.DetailedBill
-import com.konzerra.panakota.presentation.bill.BillState
+import com.konzerra.panakota.domain.model.Deputy
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -20,5 +18,20 @@ class MyListsViewModel @Inject constructor(
     fun setCurrentTab(index:Int){
         _currentTab.value = index
     }
-
+    init{
+        _state.value= MyListsState(list = listOf(
+            Deputy(
+                active = true,
+                name = "Dastan Bekeshev",
+                date = "18.12.1967",
+                url = "youtube.com/konzerra"
+            ),
+            Deputy(
+                active = true,
+                name = "Ruslan",
+                date = "18.12.1967",
+                url = "youtube.com/konzerra"
+            )
+        ))
+    }
 }

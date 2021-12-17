@@ -72,7 +72,9 @@ fun BillScreen(
                         modifier = Modifier,
                         screenHeight = screenHeight.value,
                         list = emptyList() ,
-                        onItemClicked = {})
+                        onItemClicked = {
+
+                        })
                 }
 
             }

@@ -12,6 +12,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintSet
 import androidx.constraintlayout.compose.Dimension
@@ -21,17 +22,20 @@ import com.konzerra.panakota.ui.theme.White
 
 @Composable
 fun DetailedPartyView(
-    party: Party
+    party: Party,
+    modifier: Modifier
 ){
     val constraints = setConstraints()
     ConstraintLayout(
-        constraints
+        modifier = modifier,
+        constraintSet = constraints
     ) {
         Text(
             modifier = Modifier
                 .layoutId("tvName")
                 .padding(),
-            text = party.name
+            text = party.name,
+            fontSize = 14.sp
         )
         Text(
             modifier = Modifier
@@ -69,8 +73,8 @@ fun DetailedPartyView(
             modifier = Modifier
                 .layoutId("ivPartyLogo")
                 .padding(end = 16.dp, top = 16.dp)
-                .height(50.dp)
-                .width(50.dp),
+                .height(40.dp)
+                .width(40.dp),
             contentScale = ContentScale.Fit,
         )
     }

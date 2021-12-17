@@ -19,13 +19,11 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintSet
 import androidx.constraintlayout.compose.Dimension
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.konzerra.panakota.domain.model.Party
 import com.konzerra.panakota.presentation.bill.components.DeputyListFixedView
 import com.konzerra.panakota.presentation.common_components.Triangle
 import com.konzerra.panakota.presentation.common_components.buttons.ButtonBottom
 import com.konzerra.panakota.presentation.common_components.elections_view.ElectionsView
 import com.konzerra.panakota.presentation.common_components.topbars.TopBarSearch
-import com.konzerra.panakota.presentation.common_components.topbars.TopBarText
 import com.konzerra.panakota.presentation.party.components.TabsPartyScreen
 import com.konzerra.panakota.presentation.partylist.components.DetailedPartyView
 import com.konzerra.panakota.ui.theme.Wood700
@@ -60,19 +58,20 @@ fun PartyScreen(
             ) {
                 item{
                     DetailedPartyView(
+                        modifier= Modifier.padding(16.dp),
                         party = state.party
                     )
                     Box(modifier = Modifier
-                        .padding(top = 4.dp, start = 16.dp, end = 16.dp)
+                        .padding(top = 4.dp, start = 8.dp, end = 8.dp)
                         .height(4.dp)
                         .fillMaxWidth()
                         .background(Wood700)
                     )
                     Text(
                         text = "Sort by elections",
-                        modifier = Modifier.padding(16.dp)
+                        modifier = Modifier.padding(start = 16.dp, top = 10.dp, bottom = 10.dp)
                     )
-                    ElectionsView(modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 16.dp))
+                    ElectionsView(modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 10.dp))
                     TabsPartyScreen(
                         modifier = Modifier
                             .padding(start = 16.dp, end = 16.dp)

@@ -28,7 +28,6 @@ fun TabsPartyScreen(
     ConstraintLayout(constraints,
         modifier = modifier
             .fillMaxWidth()
-            .padding(top = 16.dp)
             .clip(shape = RoundedCornerShape(4.dp))
             .background(Gray300)
     ) {

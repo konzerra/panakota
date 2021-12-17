@@ -1,5 +1,6 @@
 package com.konzerra.panakota.presentation.billList
 
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -29,9 +30,14 @@ fun BillListScreen(
 ){
     val state = viewModel.state.value
     val constraints = setConstraints() //see at the end
-    ConstraintLayout(constraints) {
+    ConstraintLayout(
+        modifier = Modifier.fillMaxSize(),
+        constraintSet = constraints
+    ) {
         BillListView(
-            modifier = Modifier.layoutId("itemsView"),
+            modifier = Modifier
+                .layoutId("itemsView")
+                .fillMaxSize(),
             bills = state.bills,
             onItemClicked = { billId->
                 navController.navigate(Screen.BillScreen.withArgs(billId))
@@ -95,9 +101,10 @@ private fun setConstraints():ConstraintSet{
         }
         constrain(itemsView) {
             top.linkTo(convocationsView.bottom)
+            bottom.linkTo(parent.bottom)
             start.linkTo(parent.start)
             width = Dimension.wrapContent
-            height = Dimension.wrapContent
+            height = Dimension.fillToConstraints
         }
     }
     return constraints

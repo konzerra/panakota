@@ -1,5 +1,6 @@
 package com.konzerra.panakota.presentation.mylists
 
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -14,6 +15,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.konzerra.panakota.R
 import com.konzerra.panakota.presentation.common_components.Triangle
 import com.konzerra.panakota.presentation.common_components.topbars.TopBarSearch
+import com.konzerra.panakota.presentation.mylists.components.DeputyListView
 import com.konzerra.panakota.presentation.mylists.components.MyListsBottomNavigation
 
 
@@ -25,28 +27,43 @@ fun MyListsScreen(
 {
     val state = viewModel.state.value
     val constraints = setConstraints() //see at the end
-    ConstraintLayout(constraints) {
-        MyListsBottomNavigation(modifier = Modifier.layoutId("bottomNavigation"),
-            currentTab = viewModel.currentTab.value,
-            updateCurrentTab = {
-                viewModel.setCurrentTab(it)
-            })
-        TextTotal(
-            modifier =Modifier.layoutId("tvTotal"),
-            number = state.list.size
-        )
-        TopBarSearch(
-            modifier = Modifier.layoutId("topBar"),
-            searchTitle = "Search",
-            onMenuClicked = {
-                openDrawer(Unit)
-            },
-            onSearchRequest = {
+    if(state.list.isNotEmpty()){
+        ConstraintLayout(
+            modifier = Modifier.fillMaxSize(),
+            constraintSet = constraints
+        ) {
+            DeputyListView(modifier = Modifier.layoutId("deputyListView"),
+                list = state.list,
+                onItemClicked = {
 
-            }
-        )
-        Triangle(modifier = Modifier.layoutId("topTriangle"))
+                })
+            MyListsBottomNavigation(modifier = Modifier.layoutId("bottomNavigation"),
+                currentTab = viewModel.currentTab.value,
+                updateCurrentTab = {
+                    viewModel.setCurrentTab(it)
+                })
+            TextTotal(
+                modifier = Modifier.layoutId("tvTotal"),
+                number = state.list.size
+            )
+            TopBarSearch(
+                modifier = Modifier.layoutId("topBar"),
+                searchTitle = "Search",
+                onMenuClicked = {
+                    openDrawer(Unit)
+                },
+                onSearchRequest = {
 
+                }
+            )
+            Triangle(modifier = Modifier.layoutId("topTriangle"))
+    }
+    if(state.isLoading){
+
+    }
+    if(state.error.isNotBlank()){
+
+    }
 }
 
 }
@@ -68,7 +85,7 @@ private fun setConstraints(): ConstraintSet {
         val topTriangle = createRefFor("topTriangle")
         val tvTotal = createRefFor("tvTotal")
         val bottomNavigation = createRefFor("bottomNavigation")
-        val itemsView = createRefFor("itemsView")
+        val deputyListView = createRefFor("deputyListView")
         constrain(topBar) {
             top.linkTo(parent.top)
             start.linkTo(parent.start)
@@ -90,9 +107,17 @@ private fun setConstraints(): ConstraintSet {
         constrain(bottomNavigation){
             bottom.linkTo(parent.bottom)
             start.linkTo(parent.start)
-            end.linkTo(parent.end)
+
             width = Dimension.fillToConstraints
             height = Dimension.wrapContent
+        }
+        constrain(deputyListView){
+            top.linkTo(tvTotal.bottom)
+            bottom.linkTo(bottomNavigation.top)
+            start.linkTo(parent.start)
+            end.linkTo(parent.end)
+            width = Dimension.fillToConstraints
+            height = Dimension.fillToConstraints
         }
     }
     return constraints
