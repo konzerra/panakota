@@ -8,6 +8,8 @@ You are able to see different bills, deputies who voted on, history of deputies
 Also you can see list of candidates of political parties at the moments of elections
 
 [technical requirments in Russian](https://docs.google.com/document/d/1IJXPLg5ArQ5ZOlAEH5wkuq_is5oPhWrLDpcZP0dN5Lk/edit?usp=sharing)
+
+[UI design figma](https://www.figma.com/file/a8uqKyhaXdf0tpWn60GS0B/Panakota-Mobile)
 ### Tech stack
 * Jetpack Compose
 * Kotlin
