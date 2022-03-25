@@ -15,7 +15,9 @@ Also you can see list of candidates of political parties at the moments of elect
 
 ### UI
 Bills page
+
 ![File](git-photos/file.png)
 
 Detailed bill
+
 ![Detailed Bill](git-photos/detailed_bill.png)
